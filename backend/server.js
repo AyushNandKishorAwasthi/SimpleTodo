@@ -1,8 +1,9 @@
-const dotenv = require('dotenv')
 const mongoose = require('mongoose');
 const path = require('path');
 const app = require('./app');
-dotenv.config({ path:'./backend/config.env' });
+if(process.env.NODE_ENV!=='PRODUCTION'){
+    require('dotenv').config({ path:'./backend/config.env' });
+}
 const DB = process.env.DB_URI.replace('<Password>',process.env.DB_PASSWORD);
 mongoose.connect(DB,{
     useUnifiedTopology:true,
